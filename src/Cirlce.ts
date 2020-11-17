@@ -1,15 +1,13 @@
 class Circle {
   private x: number = 0;
   private y: number = 0;
-  private dx: number;
+  private step: number;
   private radius: number;
   private canvas: CanvasRenderingContext2D;
-  private dy: number;
   public update: () => void;
   
-  constructor(dx: number, dy: number, radius: number, canvas: CanvasRenderingContext2D) {
-    this.dx = dx;
-    this.dy = dy;
+  constructor(step: number, radius: number, canvas: CanvasRenderingContext2D) {
+    this.step = step;
     this.radius = radius;
     this.canvas = canvas;
     this.update = () => null;
@@ -24,18 +22,22 @@ class Circle {
   
   private _startFromLeftToRight() {
     if ((this.x + this.radius) > innerWidth || (this.x - this.radius) < 0) {
-      this.dx = -this.dx;
+      this.step = -this.step;
     }
   
-    this.x += this.dx;
+    this.x += this.step;
   }
   
   private _startFromBottomToTop() {
     if ((this.y + this.radius) > innerHeight || (this.y - this.radius) < 0) {
-      this.dy = -this.dy;
+      this.step = -this.step;
     }
     
-    this.y += this.dy;
+    this.y += this.step;
+  }
+  
+  private _startInfinitySymbolAnimation() {
+    
   }
   
   initFromBottomToTop() {
@@ -48,6 +50,12 @@ class Circle {
     this.x = 30;
     this.y = window.innerHeight / 2;
     this.update = this._startFromLeftToRight
+  }
+  
+  initInfinitySymbol() {
+    this.x = innerWidth / 2;
+    this.y = innerHeight / 2;
+    this.update = this._startInfinitySymbolAnimation;
   }
 }
 

@@ -3,15 +3,15 @@ import initCanvas from './initCanvas'
 import './index.css'
 
 const canvas = initCanvas();
-const radius = 20;
+let radius = 20;
 
-const controls = document.querySelectorAll("input[name='animation']")
+const animationControl = document.querySelectorAll("input[name='animation']")
+const circle = new Circle(3, radius, canvas)
 
-controls.forEach((control) => {
+animationControl.forEach((control) => {
     control.addEventListener('click', evt =>  {
         // @ts-ignore
         const value: string = evt.target?.value;
-        const circle = new Circle(5, 5, radius, canvas)
         switch (value) {
             case 'fromLeftToRight':
                 initAnimation(circle, 'initFromRightToLeft')
@@ -19,13 +19,17 @@ controls.forEach((control) => {
             case 'fromTopToBottom':
                 initAnimation(circle, 'initFromBottomToTop')
                 break;
+            case 'infinitySymbol':
+                initAnimation(circle, 'initInfinitySymbol')
             default:
                 break;
         }
     })
 })
 
-function initAnimation(circle: Circle, animationMethod: keyof Circle) {
+type CircleMethods = keyof Circle;
+
+function initAnimation(circle: Circle, animationMethod: Extract<CircleMethods, 'initFromRightToLeft' | 'initFromBottomToTop' | 'initInfinitySymbol'>) {
     circle[animationMethod]()
     
     function animation() {
