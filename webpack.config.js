@@ -6,7 +6,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/index.ts'),
+  entry: path.resolve(__dirname, 'src/index.js'),
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   devtool: isDev ? 'source-map' : false,
@@ -17,9 +17,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        test: /\.m?js$/,
         exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.css$/,

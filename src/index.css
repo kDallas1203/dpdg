@@ -6,3 +6,38 @@ body {
     max-height: 100vh;
     background-color: black;
 }
+
+.circle {
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.circle__animation_leftRight {
+    animation:linear infinite alternate;
+    animation-name: leftRight;
+    animation-duration: 10s;
+}
+
+.circle__animation_topBottom {
+    animation:linear infinite alternate;
+    animation-name: topToBottom;
+    animation-duration: 5s;
+    left: 50%
+}
+
+@keyframes leftRight {
+    0% { left: 0;}
+    50%{ left : 99%;}
+    100%{ left: 0;}
+}
+
+@keyframes topToBottom {
+    0% { top: 0; }
+    50% { top: 100%; }
+    100% { top: 0;}
+  }

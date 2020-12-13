@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
 </head>
+
 <body>
-    <canvas id="canvas"></canvas>
-    <div class="controls absolute w-full text-gray-600 p-2 flex bottom-0 left-0">
-        <div class="animation-control mr-10">
-            <span>Траектория:</span>
-            <input name="animation" type="radio" id="fromLeftToRight" value="fromLeftToRight">
-            <label for="fromLeftToRight">Влево-вправо</label>
+    <div class="main-container relative h-screen flex flex-col overflow-hidden">
+        <div class="screen-wrapper flex-1 relative">
+            <div class="circle"></div>
+        </div>
+        <div class="controls w-full text-gray-600 p-2 flex bottom-0 left-0 opacity-25 hover:opacity-100">
+            <div class="animation-control mr-10">
+                <span>Траектория:</span>
+                <input name="animation" type="radio" id="fromLeftToRight" value="fromLeftToRight">
+                <label for="fromLeftToRight">Влево-вправо</label>
+    
+                <input name="animation" type="radio" id="fromTopToBottom" value="fromTopToBottom">
+                <label for="fromTopToBottom">Вверх-вниз</label>
+    
+                <input type="range" id="circle-size" value="25" name="circle-size" min="10" max="100">
+                <label for="circle-size">Размер</label>
 
-            <input name="animation" type="radio" id="fromTopToBottom" value="fromTopToBottom">
-            <label for="fromTopToBottom">Вверх-вниз</label>
-
-            <input name="animation" type="radio" id="infinitySymbol" value="infinitySymbol">
-            <label for="infinitySymbol">Бесконечность</label>
+                <input type="range" id="circle-speed" name="circle-speed" value="5" min="1" max="20">
+                <label for="circle-speed">Скорость</label>
+            </div>
         </div>
     </div>
 </body>
+
 </html>
